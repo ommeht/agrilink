@@ -1,0 +1,397 @@
+
+> agrilink-backend@1.0.0 dev
+> nodemon src/server.js
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: localhost
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: localhost
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+DB Error: querySrv ENOTFOUND _mongodb._tcp.<cluster>.mongodb.net
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1872:16)
+    at listenInCluster (node:net:1920:12)
+    at Server.listen (node:net:2008:7)
+    at Function.listen (c:\Users\ommeh\Desktop\proje\agrilink\backend\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (c:\Users\ommeh\Desktop\proje\agrilink\backend\src\server.js:29:5)
+    at Module._compile (node:internal/modules/cjs/loader:1376:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)
+    at Module.load (node:internal/modules/cjs/loader:1207:32)
+    at Module._load (node:internal/modules/cjs/loader:1023:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1899:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v20.11.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+[0mPOST /api/auth/register [31m500[0m 10019.842 ms - 436[0m
+DB Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-00.df7yks1.mongodb.net
+[0mPOST /api/auth/register [32m201[0m 400.691 ms - 550[0m
+[0mGET /api/farmers/notifications/me [32m200[0m 97.686 ms - 20[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.416 ms - -[0m
+[0mGET /api/orders/farmer [32m200[0m 83.311 ms - 13[0m
+[0mGET /api/orders/farmer [36m304[0m 84.009 ms - -[0m
+[0mGET /api/orders/stats [32m200[0m 402.760 ms - 71[0m
+[0mGET /api/orders/stats [36m304[0m 92.336 ms - -[0m
+[0mGET /api/products/my [32m200[0m 92.500 ms - 15[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 111.538 ms - -[0m
+[0mGET /api/products/my [36m304[0m 82.022 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 78.981 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 76.394 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 97.462 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 144.319 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 134.004 ms - -[0m
+[0mGET /api/products/my [36m304[0m 88.289 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 94.103 ms - -[0m
+[0mGET /api/products/my [36m304[0m 97.961 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 81.498 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 93.182 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 91.689 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 90.621 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 95.115 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 93.365 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 99.524 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 91.909 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 94.465 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 102.313 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 111.358 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 88.274 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 137.930 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.370 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 89.106 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 89.793 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 77.633 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 93.329 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 89.830 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 82.272 ms - -[0m
+[0mGET /api/orders/stats [36m304[0m 99.307 ms - -[0m
+[0mGET /api/auth/me [32m200[0m 70.890 ms - 368[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 153.116 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 60.134 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 92.371 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 90.530 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 96.034 ms - -[0m
+[0mGET /api/farmers?search=&limit=20 [32m200[0m 143.395 ms - 405[0m
+[0mGET /api/products?page=1 [32m200[0m 96.032 ms - 44[0m
+[0mGET /api/products?page=1 [36m304[0m 89.493 ms - -[0m
+[0mPOST /api/auth/register [32m201[0m 403.707 ms - 527[0m
+[0mGET /api/farmers/notifications/me [32m200[0m 97.710 ms - 20[0m
+[0mGET /api/cart [32m200[0m 95.093 ms - 37[0m
+[0mGET /api/products?page=1 [36m304[0m 78.524 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 117.359 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 89.729 ms - -[0m
+[0mGET /api/products?category=vegetables&page=1 [32m200[0m 85.005 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 119.076 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 86.106 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 71.232 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 72.884 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 72.550 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 100.782 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 92.440 ms - -[0m
+[0mGET /api/products/my [36m304[0m 74.102 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.275 ms - -[0m
+[0mGET /api/products/my [36m304[0m 73.922 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 73.853 ms - -[0m
+[0mPOST /api/products [32m201[0m 271.309 ms - 553[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 97.890 ms - -[0m
+[0mGET /api/products/my [32m200[0m 133.972 ms - 556[0m
+[0mGET /api/products/my [36m304[0m 101.371 ms - -[0m
+[0mGET /api/products/69ca641e5b2056e6a211e145 [32m200[0m 246.661 ms - 656[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 263.212 ms - -[0m
+[0mGET /api/products/69ca641e5b2056e6a211e145 [36m304[0m 249.295 ms - -[0m
+[0mPUT /api/products/69ca641e5b2056e6a211e145 [32m200[0m 222.451 ms - 592[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 96.395 ms - -[0m
+[0mGET /api/products/my [32m200[0m 88.426 ms - 595[0m
+[0mGET /uploads/1774871663115-469862703.webp [32m200[0m 6.594 ms - 107900[0m
+[0mGET /api/products/my [36m304[0m 80.703 ms - -[0m
+[0mGET /api/products?category=vegetables&page=1 [32m200[0m 146.298 ms - 716[0m
+[0mGET /uploads/1774871663115-469862703.webp [32m200[0m 1.551 ms - 107900[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 144.896 ms - -[0m
+[0mPOST /api/cart [32m200[0m 247.367 ms - 410[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 91.525 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 90.710 ms - -[0m
+[0mPOST /api/orders [32m201[0m 287.538 ms - 599[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 90.746 ms - -[0m
+[0mGET /api/orders/69ca64985b2056e6a211e16f [32m200[0m 133.708 ms - 809[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 0.820 ms - -[0m
+[0mGET /api/orders/69ca64985b2056e6a211e16f [36m304[0m 174.684 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 132.933 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 99.391 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 130.562 ms - -[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 0.631 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 93.609 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 99.593 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 162.930 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 134.450 ms - -[0m
+[0mPOST /api/orders [32m201[0m 348.376 ms - 599[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 161.362 ms - -[0m
+[0mGET /api/orders/69ca64b25b2056e6a211e195 [32m200[0m 202.060 ms - 809[0m
+[0mGET /api/orders/69ca64b25b2056e6a211e195 [36m304[0m 137.285 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 87.314 ms - -[0m
+[0mGET /api/products?page=1 [32m200[0m 113.928 ms - 715[0m
+[0mGET /api/products?page=1 [36m304[0m 119.112 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 74.804 ms - -[0m
+[0mGET /api/farmers?search=&limit=20 [32m200[0m 113.697 ms - 405[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 108.679 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 168.651 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 136.825 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-02.df7yks1.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-00.df7yks1.mongodb.net
+[0mGET /api/cart [32m200[0m 89.901 ms - 194[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 108.594 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 161.786 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 80.933 ms - -[0m
+[0mGET /api/cart [36m304[0m 90.642 ms - -[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 2.808 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 137.235 ms - -[0m
+[0mGET /api/auth/me [32m200[0m 363.246 ms - 345[0m
+[0mGET /api/auth/me [36m304[0m 46.983 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 101.342 ms - -[0m
+[0mGET /api/cart [36m304[0m 99.741 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 88.831 ms - -[0m
+[0mGET /api/cart [36m304[0m 110.853 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 98.878 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 94.393 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 93.360 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 241.177 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 148.499 ms - -[0m
+[0mPOST /api/cart [32m200[0m 290.608 ms - 409[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 88.746 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 96.085 ms - -[0m
+[0mPOST /api/orders [32m201[0m 622.624 ms - 599[0m
+[0mGET /api/cart [32m200[0m 117.691 ms - 194[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 102.034 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [32m200[0m 160.193 ms - 809[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 0.782 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [36m304[0m 181.610 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.731 ms - -[0m
+[0mGET /api/orders/my [32m200[0m 140.987 ms - 2187[0m
+[0mGET /api/orders/my [36m304[0m 138.706 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 96.193 ms - -[0m
+[0mGET /api/products?page=1 [32m200[0m 140.650 ms - 715[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 0.600 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 205.839 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 107.812 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 103.754 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 90.452 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 97.505 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.702 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.471 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 142.369 ms - -[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 1.908 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 139.249 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 93.556 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 166.627 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 141.795 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 94.992 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [36m304[0m 156.599 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [36m304[0m 142.431 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 118.805 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 181.731 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 143.617 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 91.925 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [36m304[0m 136.723 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [36m304[0m 143.704 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-00.df7yks1.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-01.df7yks1.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-02.df7yks1.mongodb.net
+[0mGET /api/farmers/notifications/me [36m304[0m 95.880 ms - -[0m
+[0mGET /api/orders/my [32m200[0m 137.905 ms - 2259[0m
+[0mGET /api/orders/my [36m304[0m 124.249 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 96.272 ms - -[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [32m200[0m 131.501 ms - 833[0m
+[0mGET /api/orders/69ca65428c8e21cdac0c3b1d [36m304[0m 150.794 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 112.487 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 288.460 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 116.620 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 73.910 ms - -[0m
+[0mGET /api/orders/69ca64985b2056e6a211e16f [32m200[0m 119.480 ms - 833[0m
+[0mGET /api/orders/69ca64985b2056e6a211e16f [36m304[0m 165.702 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 95.675 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 117.855 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 119.458 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 165.038 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 82.581 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 77.881 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 124.299 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 91.974 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 128.835 ms - -[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 5.105 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 115.231 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 87.786 ms - -[0m
+[0mGET /api/farmers?search=&limit=20 [32m200[0m 112.331 ms - 405[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 99.876 ms - -[0m
+[0mGET /api/farmers/69ca62895b2056e6a211e0b6 [32m200[0m 104.421 ms - 971[0m
+[0mGET /api/farmers/69ca62895b2056e6a211e0b6 [36m304[0m 95.059 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 93.638 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 112.788 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 110.545 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-02.df7yks1.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+Server running on port 5000
+MongoDB Connected: ac-go0qplg-shard-00-00.df7yks1.mongodb.net
+[0mGET /api/reviews/product/69ca641e5b2056e6a211e145 [32m200[0m 50.708 ms - 14[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 89.763 ms - -[0m
+[0mGET /api/products/69ca641e5b2056e6a211e145 [32m200[0m 90.082 ms - 694[0m
+[0mGET /api/reviews/product/69ca641e5b2056e6a211e145 [36m304[0m 39.255 ms - -[0m
+[0mGET /api/products/69ca641e5b2056e6a211e145 [36m304[0m 76.865 ms - -[0m
+[0mPOST /api/reviews/product/69ca641e5b2056e6a211e145 [33m400[0m 115.332 ms - 61[0m
+[0mPOST /api/reviews/product/69ca641e5b2056e6a211e145 [33m400[0m 110.630 ms - 61[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 74.496 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 118.178 ms - -[0m
+[0mGET /api/orders/my [36m304[0m 129.844 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 361.311 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 378.460 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 580.249 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 74.097 ms - -[0m
+[0mGET /api/products?category=vegetables&page=1 [32m200[0m 112.119 ms - 715[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.556 ms - -[0m
+[0mGET /api/products?category=fruits&page=1 [32m200[0m 71.832 ms - 44[0m
+[0mGET /api/products?category=grains&page=1 [32m200[0m 79.761 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 76.558 ms - -[0m
+[0mGET /api/products?category=dairy&page=1 [32m200[0m 98.685 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 87.221 ms - -[0m
+[0mGET /api/products?category=poultry&page=1 [32m200[0m 76.853 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.784 ms - -[0m
+[0mGET /api/products?category=herbs&page=1 [32m200[0m 73.449 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.855 ms - -[0m
+[0mGET /api/products?category=other&page=1 [32m200[0m 83.408 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 95.878 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.130 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 113.494 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.661 ms - -[0m
+[0mPOST /api/auth/register [32m201[0m 476.204 ms - 514[0m
+[0mGET /api/farmers/notifications/me [32m200[0m 85.454 ms - 20[0m
+[0mGET /api/cart [32m200[0m 88.110 ms - 37[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.416 ms - -[0m
+[0mGET /api/products?page=1 [32m200[0m 109.842 ms - 715[0m
+[0mGET /uploads/1774871663115-469862703.webp [32m200[0m 11.902 ms - 107900[0m
+[0mGET /api/products?page=1 [36m304[0m 115.123 ms - -[0m
+[0mGET /api/cart [33m403[0m 46.460 ms - 44[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 113.219 ms - -[0m
+[0mGET /api/cart [33m403[0m 41.246 ms - 44[0m
+[0mGET /api/products?page=1 [36m304[0m 132.978 ms - -[0m
+[0mGET /uploads/1774871663115-469862703.webp [36m304[0m 4.059 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 83.475 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 149.676 ms - -[0m
+[0mGET /api/auth/me [32m200[0m 490.184 ms - 329[0m
+[0mGET /api/auth/me [36m304[0m 42.637 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 84.904 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 88.729 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 320.349 ms - 511[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 95.078 ms - -[0m
+[0mGET /api/farmers/admin/users [32m200[0m 135.434 ms - 1409[0m
+[0mGET /api/farmers/admin/orders [32m200[0m 142.117 ms - 2193[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 117.317 ms - -[0m
+[0mGET /api/farmers/admin/users [36m304[0m 81.749 ms - -[0m
+[0mGET /api/farmers/admin/orders [36m304[0m 146.745 ms - -[0m
+[0mGET /api/farmers/admin/stats [32m200[0m 442.220 ms - 85[0m
+[0mGET /api/farmers/admin/stats [36m304[0m 89.379 ms - -[0m
+[0mGET /api/auth/me [32m200[0m 53.950 ms - 748[0m
+[0mGET /api/farmers/notifications/me [32m200[0m 131.930 ms - 400[0m
+[0mGET /api/auth/me [36m304[0m 50.438 ms - -[0m
+[0mGET /api/orders/stats [32m200[0m 90.926 ms - 72[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 97.531 ms - -[0m
+[0mGET /api/orders/farmer [32m200[0m 134.091 ms - 2343[0m
+[0mGET /api/orders/stats [36m304[0m 98.405 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 94.176 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 142.503 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 98.714 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 210.504 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 278.832 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 182.504 ms - -[0m
+[0mPUT /api/orders/69ca65428c8e21cdac0c3b1d/status [32m200[0m 214.132 ms - 665[0m
+[0mPUT /api/orders/69ca64b25b2056e6a211e195/status [32m200[0m 177.991 ms - 665[0m
+[0mGET /api/orders/stats [32m200[0m 138.737 ms - 72[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 144.950 ms - -[0m
+[0mGET /api/orders/farmer [32m200[0m 190.995 ms - 2427[0m
+[0mGET /api/orders/stats [36m304[0m 99.791 ms - -[0m
+[0mGET /api/orders/farmer [36m304[0m 151.919 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 102.683 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 53.477 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 67.212 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 160.246 ms - -[0m
+[0mGET /api/farmers/admin/users [32m200[0m 132.796 ms - 1678[0m
+[0mGET /api/farmers/admin/orders [32m200[0m 201.244 ms - 2277[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 134.541 ms - -[0m
+[0mGET /api/farmers/admin/users [36m304[0m 120.112 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 120.504 ms - -[0m
+[0mGET /api/farmers/admin/orders [36m304[0m 130.373 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 132.935 ms - -[0m
+[0mGET /api/farmers/admin/stats [36m304[0m 710.370 ms - -[0m
+[0mGET /api/farmers/admin/stats [36m304[0m 111.066 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 120.404 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 117.433 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 106.340 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 124.325 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 163.009 ms - -[0m
+[0mGET /api/farmers/notifications/me [32m200[0m 147.303 ms - 289[0m
+[0mGET /api/orders/my [32m200[0m 182.441 ms - 2343[0m
+[0mGET /api/orders/my [36m304[0m 137.380 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 84.841 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 121.483 ms - -[0m
+[0mGET /api/products?page=1 [36m304[0m 154.577 ms - -[0m
+[0mPOST /api/cart [32m200[0m 463.794 ms - 409[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 160.365 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 86.889 ms - -[0m
+[0mGET /api/auth/me [32m200[0m 72.575 ms - 614[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 147.386 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 78.180 ms - -[0m
+[0mGET /api/cart [32m200[0m 166.167 ms - 445[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 87.516 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 75.599 ms - -[0m
+[0mGET /api/cart [36m304[0m 117.572 ms - -[0m
+[0mGET /api/farmers/notifications/me [36m304[0m 76.953 ms - -[0m
+[0mGET /api/cart [36m304[0m 122.230 ms - -[0m
+[0mGET /api/cart [36m304[0m 165.021 ms - -[0m
