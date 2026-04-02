@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FiMapPin, FiPhone, FiEdit2, FiTrash2, FiSend } from 'react-icons/fi';
 import { ProductCard, StarRating, Skeleton } from '../components/ui';
 import { useAuth } from '../context/AuthContext';

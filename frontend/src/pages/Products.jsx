@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { FiSearch, FiFilter, FiX } from 'react-icons/fi';
 import { ProductCard, ProductCardSkeleton, EmptyState } from '../components/ui';
 import api from '../utils/api';
-import { formatINR } from '../utils/currency';
 
 const CATEGORIES = ['all', 'vegetables', 'fruits', 'grains', 'dairy', 'poultry', 'herbs', 'other'];
 
