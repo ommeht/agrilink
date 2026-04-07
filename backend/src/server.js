@@ -27,7 +27,7 @@ app.use('/api/cart', require('./routes/cart'));
 app.use('/api/farmers', require('./routes/farmers'));
 app.use('/api/ai', require('./routes/ai'));
 
-app.get('/api/health', (req, res) => res.json({ status: 'AgriLink API running' }));
+app.get('/api/health', (req, res) => res.json({ status: 'AgriLink API running', gemini: !!process.env.GEMINI_API_KEY }));
 
 app.use(errorHandler);
 
