@@ -10,6 +10,7 @@ export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,6 +18,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     setLoading(true);
     try {
       const user = await login(form.email, form.password);
@@ -25,7 +27,9 @@ export default function Login() {
       else if (user.role === 'admin') navigate('/admin');
       else navigate(from);
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Login failed');
+      const msg = err.response?.data?.message || 'Invalid email or password';
+      setError(msg);
+      toast.error(msg);
     } finally { setLoading(false); }
   };
 
@@ -65,16 +69,22 @@ export default function Login() {
                 </button>
               </div>
             </div>
+            {error && (
+              <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+                className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-sm text-red-600 dark:text-red-400">
+                ⚠️ {error}
+              </motion.div>
+            )}
             <motion.button whileTap={{ scale: 0.98 }} type="submit" disabled={loading}
               className="btn-primary w-full py-3 text-base">
               {loading ? <span className="flex items-center justify-center gap-2"><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />Signing in...</span> : 'Sign In'}
             </motion.button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-primary-600 font-semibold hover:underline">Sign up</Link>
-          </p>
+          <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+            <p className="text-sm text-gray-500">Don't have an account?</p>
+            <Link to="/register" className="text-primary-600 font-semibold hover:underline text-sm">Create an account →</Link>
+          </div>
         </div>
       </motion.div>
     </div>
