@@ -25,6 +25,7 @@ import Notifications from './pages/Notifications';
 import FarmerDashboard from './pages/farmer/Dashboard';
 import { FarmerProducts, ProductForm } from './pages/farmer/Products';
 import FarmerOrders from './pages/farmer/Orders';
+import AIChatbot from './pages/farmer/AIChatbot';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/Dashboard';
@@ -61,6 +62,7 @@ function AppRoutes() {
           <Route path="/farmer/products/new" element={<ProtectedRoute roles={['farmer']}><ProductForm /></ProtectedRoute>} />
           <Route path="/farmer/products/edit/:id" element={<ProtectedRoute roles={['farmer']}><ProductForm /></ProtectedRoute>} />
           <Route path="/farmer/orders" element={<ProtectedRoute roles={['farmer']}><FarmerOrders /></ProtectedRoute>} />
+          <Route path="/farmer/ai" element={<ProtectedRoute roles={['farmer']}><AIChatbot /></ProtectedRoute>} />
 
           {/* Admin Protected */}
           <Route path="/admin" element={<ProtectedRoute roles={['admin']}><AdminDashboard /></ProtectedRoute>} />
