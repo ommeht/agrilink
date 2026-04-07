@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useCart } from '../context/CartContext';
 import api from '../utils/api';
+import { imgUrl } from '../utils/config';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -108,7 +109,7 @@ export default function Navbar() {
                 <motion.button whileTap={{ scale: 0.95 }} onClick={() => setProfileOpen(!profileOpen)}
                   className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                   {user.avatar ? (
-                    <img src={`http://localhost:5000${user.avatar}`} alt={user.name} className="w-8 h-8 rounded-full object-cover" />
+                    <img src={imgUrl(user.avatar)} alt={user.name} className="w-8 h-8 rounded-full object-cover" />
                   ) : (
                     <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center text-white font-bold text-sm">
                       {user.name[0].toUpperCase()}

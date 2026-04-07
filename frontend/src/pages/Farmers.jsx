@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import { FiSearch, FiMapPin, FiStar } from 'react-icons/fi';
 import { Skeleton, EmptyState } from '../components/ui';
 import api from '../utils/api';
+import { imgUrl } from '../utils/config';
 
 export const FarmerCard = ({ farmer }) => (
   <motion.div whileHover={{ y: -4 }} className="card p-6 hover:shadow-lg transition-shadow">
     <Link to={`/farmers/${farmer._id}`}>
       <div className="flex items-start gap-4">
         <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-2xl font-bold shrink-0">
-          {farmer.avatar ? <img src={`http://localhost:5000${farmer.avatar}`} alt={farmer.name} className="w-full h-full object-cover rounded-2xl" /> : farmer.name[0]}
+          {farmer.avatar ? <img src={imgUrl(farmer.avatar)} alt={farmer.name} className="w-full h-full object-cover rounded-2xl" /> : farmer.name[0]}
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-gray-900 dark:text-white truncate">{farmer.farmName || farmer.name}</h3>

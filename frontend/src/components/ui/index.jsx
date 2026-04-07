@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../utils/api';
 import { formatINR } from '../../utils/currency';
+import { imgUrl } from '../../utils/config';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 
@@ -64,7 +65,7 @@ export const ProductCard = ({ product }) => {
     } catch {}
   };
 
-  const imageUrl = product.images?.[0] ? `http://localhost:5000${product.images[0]}` : `https://placehold.co/400x300/22c55e/white?text=${encodeURIComponent(product.name)}`;
+  const imageUrl = product.images?.[0] ? imgUrl(product.images[0]) : `https://placehold.co/400x300/22c55e/white?text=${encodeURIComponent(product.name)}`;
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} whileHover={{ y: -4 }}

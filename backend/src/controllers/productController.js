@@ -34,7 +34,7 @@ exports.getProduct = async (req, res, next) => {
 
 exports.createProduct = async (req, res, next) => {
   try {
-    const images = req.files ? req.files.map(f => `/uploads/${f.filename}`) : [];
+    const images = req.files ? req.files.map(f => f.path) : [];
     const product = await Product.create({ ...req.body, farmer: req.user._id, images });
     res.status(201).json({ product });
   } catch (err) { next(err); }
@@ -47,7 +47,7 @@ exports.updateProduct = async (req, res, next) => {
     if (product.farmer.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'Not authorized' });
     }
-    const images = req.files?.length ? req.files.map(f => `/uploads/${f.filename}`) : undefined;
+    const images = req.files?.length ? req.files.map(f => f.path) : undefined;
     const updates = { ...req.body, ...(images && { images }) };
     const updated = await Product.findByIdAndUpdate(req.params.id, updates, { new: true, runValidators: true });
     res.json({ product: updated });

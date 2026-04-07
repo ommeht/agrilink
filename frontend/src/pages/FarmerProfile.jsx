@@ -5,6 +5,7 @@ import { FiMapPin, FiPhone, FiEdit2, FiTrash2, FiSend } from 'react-icons/fi';
 import { ProductCard, StarRating, Skeleton } from '../components/ui';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
+import { imgUrl } from '../utils/config';
 import toast from 'react-hot-toast';
 
 export default function FarmerProfile() {
@@ -116,7 +117,7 @@ export default function FarmerProfile() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <div className="w-24 h-24 rounded-2xl bg-white/20 flex items-center justify-center text-4xl font-bold shrink-0 overflow-hidden">
               {farmer.avatar
-                ? <img src={`http://localhost:5000${farmer.avatar}`} alt={farmer.name} className="w-full h-full object-cover" />
+                ? <img src={imgUrl(farmer.avatar)} alt={farmer.name} className="w-full h-full object-cover" />
                 : farmer.name[0]}
             </div>
             <div className="flex-1">
@@ -276,7 +277,7 @@ export default function FarmerProfile() {
                   className={`flex gap-4 p-4 rounded-xl border transition-all ${review.customer?._id?.toString() === user?._id?.toString() ? 'border-primary-200 dark:border-primary-800 bg-primary-50/50 dark:bg-primary-900/10' : 'border-gray-100 dark:border-gray-800'}`}>
                   <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-white font-bold shrink-0 overflow-hidden">
                     {review.customer?.avatar
-                      ? <img src={`http://localhost:5000${review.customer.avatar}`} alt="" className="w-full h-full object-cover" />
+                      ? <img src={imgUrl(review.customer.avatar)} alt="" className="w-full h-full object-cover" />
                       : review.customer?.name?.[0]}
                   </div>
                   <div className="flex-1">

@@ -4,6 +4,7 @@ import { FiTrash2, FiMinus, FiPlus, FiArrowRight } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import { EmptyState } from '../components/ui';
 import { formatINR } from '../utils/currency';
+import { imgUrl } from '../utils/config';
 
 export default function Cart() {
   const { cart, updateItem, removeItem, clearCart } = useCart();
@@ -33,7 +34,7 @@ export default function Cart() {
             <AnimatePresence>
               {cart.items.map(item => {
                 const product = item.product;
-                const imageUrl = product?.images?.[0] ? `http://localhost:5000${product.images[0]}` : `https://placehold.co/80x80/22c55e/white?text=${encodeURIComponent(product?.name || '')}`;
+                const imageUrl = product?.images?.[0] ? imgUrl(product.images[0]) : `https://placehold.co/80x80/22c55e/white?text=${encodeURIComponent(product?.name || '')}`;
                 return (
                   <motion.div key={item._id || item.product?._id} layout initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
                     className="card p-4 flex items-center gap-4">

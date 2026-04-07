@@ -6,23 +6,18 @@ import { StatusBadge, EmptyState, Skeleton } from '../components/ui';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 import { formatINR } from '../utils/currency';
+import { imgUrl } from '../utils/config';
 import toast from 'react-hot-toast';
 
-// ── Cancel Modal ──────────────────────────────────────────────────────────────
 const CANCEL_REASONS = [
-  'Changed my mind',
-  'Ordered by mistake',
-  'Found a better price elsewhere',
-  'Delivery time is too long',
-  'Product no longer needed',
-  'Other'
+  'Changed my mind', 'Ordered by mistake', 'Found a better price elsewhere',
+  'Delivery time is too long', 'Product no longer needed', 'Other'
 ];
 
 function CancelModal({ orderId, onClose, onCancelled }) {
   const [reason, setReason] = useState('');
   const [custom, setCustom] = useState('');
   const [loading, setLoading] = useState(false);
-
   const finalReason = reason === 'Other' ? custom : reason;
 
   const handleSubmit = async (e) => {
@@ -47,8 +42,6 @@ function CancelModal({ orderId, onClose, onCancelled }) {
         <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
           className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6"
           onClick={e => e.stopPropagation()}>
-
-          {/* Header */}
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
@@ -60,38 +53,23 @@ function CancelModal({ orderId, onClose, onCancelled }) {
               <FiX size={18} className="text-gray-500" />
             </button>
           </div>
-
-          <p className="text-sm text-gray-500 mb-5">
-            Please tell us why you want to cancel. This helps us improve our service.
-          </p>
-
+          <p className="text-sm text-gray-500 mb-5">Please tell us why you want to cancel.</p>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Reason Pills */}
             <div className="grid grid-cols-1 gap-2">
               {CANCEL_REASONS.map(r => (
-                <label key={r}
-                  className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${reason === r ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-200 dark:border-gray-700 hover:border-red-300'}`}>
-                  <input type="radio" name="reason" value={r} checked={reason === r}
-                    onChange={() => setReason(r)} className="accent-red-500" />
+                <label key={r} className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${reason === r ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-200 dark:border-gray-700 hover:border-red-300'}`}>
+                  <input type="radio" name="reason" value={r} checked={reason === r} onChange={() => setReason(r)} className="accent-red-500" />
                   <span className={`text-sm font-medium ${reason === r ? 'text-red-600 dark:text-red-400' : 'text-gray-700 dark:text-gray-300'}`}>{r}</span>
                 </label>
               ))}
             </div>
-
-            {/* Custom reason input */}
             {reason === 'Other' && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                <textarea value={custom} onChange={e => setCustom(e.target.value)}
-                  className="input resize-none" rows={3}
-                  placeholder="Please describe your reason..." required />
+                <textarea value={custom} onChange={e => setCustom(e.target.value)} className="input resize-none" rows={3} placeholder="Please describe your reason..." required />
               </motion.div>
             )}
-
             <div className="flex gap-3 pt-2">
-              <button type="button" onClick={onClose}
-                className="flex-1 py-2.5 rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                Keep Order
-              </button>
+              <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Keep Order</button>
               <motion.button whileTap={{ scale: 0.97 }} type="submit" disabled={loading || !reason}
                 className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                 {loading ? <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> : 'Cancel Order'}
@@ -104,7 +82,6 @@ function CancelModal({ orderId, onClose, onCancelled }) {
   );
 }
 
-// ── Order History ─────────────────────────────────────────────────────────────
 export function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -122,7 +99,6 @@ export function OrderHistory() {
     <div className="min-h-screen pt-20 pb-12 bg-gray-50 dark:bg-gray-950">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">My Orders</h1>
-
         {loading ? (
           <div className="space-y-4">{[...Array(3)].map((_, i) => <Skeleton key={i} className="h-32" />)}</div>
         ) : orders.length === 0 ? (
@@ -143,41 +119,31 @@ export function OrderHistory() {
                     <span className="font-bold text-primary-600">{formatINR(order.totalAmount)}</span>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-2 mb-3">
                   {order.items?.slice(0, 3).map(item => (
                     <div key={item._id} className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
                       {item.image
-                        ? <img src={`http://localhost:5000${item.image}`} alt={item.name} className="w-full h-full object-cover" />
+                        ? <img src={imgUrl(item.image)} alt={item.name} className="w-full h-full object-cover" />
                         : <div className="w-full h-full flex items-center justify-center text-lg">📦</div>}
                     </div>
                   ))}
                   {order.items?.length > 3 && <span className="text-sm text-gray-500">+{order.items.length - 3} more</span>}
                 </div>
-
-                {/* Cancellation reason badge */}
                 {order.status === 'cancelled' && order.cancellationReason && (
                   <div className="mb-3 px-3 py-2 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-100 dark:border-red-800">
-                    <p className="text-xs text-red-600 dark:text-red-400">
-                      <span className="font-semibold">Cancelled:</span> {order.cancellationReason}
-                    </p>
+                    <p className="text-xs text-red-600 dark:text-red-400"><span className="font-semibold">Cancelled:</span> {order.cancellationReason}</p>
                   </div>
                 )}
-
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-gray-500">From: {order.farmer?.farmName || order.farmer?.name}</p>
                   <div className="flex items-center gap-3">
-                    {/* Cancel button — only for pending/confirmed */}
                     {['pending', 'confirmed'].includes(order.status) && (
-                      <motion.button whileTap={{ scale: 0.95 }}
-                        onClick={() => setCancellingId(order._id)}
+                      <motion.button whileTap={{ scale: 0.95 }} onClick={() => setCancellingId(order._id)}
                         className="text-sm text-red-500 hover:text-red-700 font-medium border border-red-200 hover:border-red-400 px-3 py-1 rounded-lg transition-colors">
                         Cancel
                       </motion.button>
                     )}
-                    <Link to={`/orders/${order._id}`} className="text-primary-600 text-sm font-medium hover:underline">
-                      View Details →
-                    </Link>
+                    <Link to={`/orders/${order._id}`} className="text-primary-600 text-sm font-medium hover:underline">View Details →</Link>
                   </div>
                 </div>
               </motion.div>
@@ -185,19 +151,11 @@ export function OrderHistory() {
           </div>
         )}
       </div>
-
-      {cancellingId && (
-        <CancelModal
-          orderId={cancellingId}
-          onClose={() => setCancellingId(null)}
-          onCancelled={handleCancelled}
-        />
-      )}
+      {cancellingId && <CancelModal orderId={cancellingId} onClose={() => setCancellingId(null)} onCancelled={handleCancelled} />}
     </div>
   );
 }
 
-// ── Order Detail ──────────────────────────────────────────────────────────────
 export function OrderDetail() {
   const { id } = useParams();
   const { user } = useAuth();
@@ -229,24 +187,19 @@ export function OrderDetail() {
   const canCancel = ['pending', 'confirmed'].includes(order.status) && user?.role === 'customer';
   const isFarmer = user?.role === 'farmer';
 
-  // Next possible statuses for farmer
   const STATUS_FLOW = {
     pending: [{ value: 'confirmed', label: 'Confirm Order', icon: <FiCheckCircle />, color: 'bg-blue-500 hover:bg-blue-600' }],
     confirmed: [{ value: 'processing', label: 'Start Processing', icon: <FiRefreshCw />, color: 'bg-purple-500 hover:bg-purple-600' }],
     processing: [{ value: 'shipped', label: 'Mark as Shipped', icon: <FiTruck />, color: 'bg-indigo-500 hover:bg-indigo-600' }],
     shipped: [{ value: 'delivered', label: 'Mark as Delivered', icon: <FiCheckCircle />, color: 'bg-green-500 hover:bg-green-600' }],
-    delivered: [],
-    cancelled: []
+    delivered: [], cancelled: []
   };
   const nextStatuses = STATUS_FLOW[order.status] || [];
 
   return (
     <div className="min-h-screen pt-20 pb-12 bg-gray-50 dark:bg-gray-950">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link to="/orders" className="flex items-center gap-2 text-primary-600 hover:underline mb-6">
-          <FiArrowLeft size={16} /> Back to Orders
-        </Link>
-
+        <Link to="/orders" className="flex items-center gap-2 text-primary-600 hover:underline mb-6"><FiArrowLeft size={16} /> Back to Orders</Link>
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Order #{order._id.slice(-8).toUpperCase()}</h1>
           <div className="flex items-center gap-3">
@@ -260,7 +213,6 @@ export function OrderDetail() {
           </div>
         </div>
 
-        {/* Cancelled banner */}
         {order.status === 'cancelled' && (
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
             className="card p-5 mb-6 border-2 border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20">
@@ -268,28 +220,18 @@ export function OrderDetail() {
               <FiAlertTriangle className="text-red-500 mt-0.5 shrink-0" size={20} />
               <div>
                 <p className="font-semibold text-red-700 dark:text-red-400">Order Cancelled</p>
-                {order.cancellationReason && (
-                  <p className="text-sm text-red-600 dark:text-red-300 mt-1">
-                    Reason: {order.cancellationReason}
-                  </p>
-                )}
-                {order.cancelledAt && (
-                  <p className="text-xs text-red-400 mt-1">
-                    Cancelled on {new Date(order.cancelledAt).toLocaleString()}
-                  </p>
-                )}
+                {order.cancellationReason && <p className="text-sm text-red-600 dark:text-red-300 mt-1">Reason: {order.cancellationReason}</p>}
+                {order.cancelledAt && <p className="text-xs text-red-400 mt-1">Cancelled on {new Date(order.cancelledAt).toLocaleString()}</p>}
               </div>
             </div>
           </motion.div>
         )}
 
-        {/* Progress tracker */}
         {order.status !== 'cancelled' && (
           <div className="card p-6 mb-6">
             <div className="flex items-center justify-between relative">
               <div className="absolute top-4 left-0 right-0 h-0.5 bg-gray-200 dark:bg-gray-700 z-0" />
-              <div className="absolute top-4 left-0 h-0.5 bg-primary-600 z-0 transition-all duration-500"
-                style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }} />
+              <div className="absolute top-4 left-0 h-0.5 bg-primary-600 z-0 transition-all duration-500" style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }} />
               {steps.map((step, i) => (
                 <div key={step} className="flex flex-col items-center z-10">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${i <= currentStep ? 'bg-primary-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-400'}`}>
@@ -302,7 +244,6 @@ export function OrderDetail() {
           </div>
         )}
 
-        {/* Farmer Status Update Panel */}
         {isFarmer && nextStatuses.length > 0 && order.status !== 'cancelled' && (
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
             className="card p-5 mb-6 border-2 border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/20">
@@ -312,10 +253,8 @@ export function OrderDetail() {
             </div>
             <div className="flex flex-wrap gap-3">
               {nextStatuses.map(({ value, label, icon, color }) => (
-                <motion.button key={value} whileTap={{ scale: 0.95 }}
-                  onClick={() => handleStatusUpdate(value)}
-                  disabled={updatingStatus}
-                  className={`flex items-center gap-2 ${color} text-white font-semibold px-5 py-2.5 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg`}>
+                <motion.button key={value} whileTap={{ scale: 0.95 }} onClick={() => handleStatusUpdate(value)} disabled={updatingStatus}
+                  className={`flex items-center gap-2 ${color} text-white font-semibold px-5 py-2.5 rounded-xl transition-all disabled:opacity-50 shadow-md hover:shadow-lg`}>
                   {updatingStatus ? <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> : icon}
                   {label}
                 </motion.button>
@@ -334,10 +273,7 @@ export function OrderDetail() {
           </div>
           <div className="card p-5">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Farmer</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              {order.farmer?.farmName || order.farmer?.name}<br />
-              {order.farmer?.phone}
-            </p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{order.farmer?.farmName || order.farmer?.name}<br />{order.farmer?.phone}</p>
           </div>
         </div>
 
@@ -348,7 +284,7 @@ export function OrderDetail() {
               <div key={item._id} className="flex items-center gap-4 py-3 border-b border-gray-100 dark:border-gray-800 last:border-0">
                 <div className="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 shrink-0">
                   {item.image
-                    ? <img src={`http://localhost:5000${item.image}`} alt={item.name} className="w-full h-full object-cover" />
+                    ? <img src={imgUrl(item.image)} alt={item.name} className="w-full h-full object-cover" />
                     : <div className="w-full h-full flex items-center justify-center text-xl">📦</div>}
                 </div>
                 <div className="flex-1">
@@ -365,14 +301,7 @@ export function OrderDetail() {
           </div>
         </div>
       </div>
-
-      {showCancel && (
-        <CancelModal
-          orderId={order._id}
-          onClose={() => setShowCancel(false)}
-          onCancelled={(updated) => setOrder({ ...order, ...updated })}
-        />
-      )}
+      {showCancel && <CancelModal orderId={order._id} onClose={() => setShowCancel(false)} onCancelled={(updated) => setOrder({ ...order, ...updated })} />}
     </div>
   );
 }

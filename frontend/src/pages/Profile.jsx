@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import { FiUser, FiPhone, FiMapPin, FiUpload, FiCheck } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
+import { imgUrl } from '../utils/config';
 import toast from 'react-hot-toast';
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [avatar, setAvatar] = useState(null);
-  const [preview, setPreview] = useState(user?.avatar ? `http://localhost:5000${user.avatar}` : null);
+  const [preview, setPreview] = useState(user?.avatar ? imgUrl(user.avatar) : null);
   const [form, setForm] = useState({
     name: user?.name || '',
     phone: user?.phone || '',

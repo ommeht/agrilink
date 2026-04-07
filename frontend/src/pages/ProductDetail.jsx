@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 import toast from 'react-hot-toast';
 import { formatINR } from '../utils/currency';
+import { imgUrl } from '../utils/config';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -52,7 +53,7 @@ export default function ProductDetail() {
 
   if (!product) return <div className="min-h-screen pt-20 flex items-center justify-center text-gray-500">Product not found</div>;
 
-  const imageUrl = (img) => img ? `http://localhost:5000${img}` : `https://placehold.co/600x400/22c55e/white?text=${encodeURIComponent(product.name)}`;
+  const imageUrl = (img) => img ? imgUrl(img) : `https://placehold.co/600x400/22c55e/white?text=${encodeURIComponent(product.name)}`;
 
   return (
     <div className="min-h-screen pt-20 pb-12 bg-gray-50 dark:bg-gray-950">

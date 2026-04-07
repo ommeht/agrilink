@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiEdit2, FiTrash2, FiPlus, FiArrowLeft, FiUpload } from 'react-icons/fi';
 import { EmptyState, Skeleton, StarRating } from '../../components/ui';
 import api from '../../utils/api';
+import { imgUrl } from '../../utils/config';
 import toast from 'react-hot-toast';
 import { formatINR } from '../../utils/currency';
 
@@ -49,7 +50,7 @@ export function FarmerProducts() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence>
               {products.map(product => {
-                const imageUrl = product.images?.[0] ? `http://localhost:5000${product.images[0]}` : `https://placehold.co/400x200/22c55e/white?text=${encodeURIComponent(product.name)}`;
+                const imageUrl = product.images?.[0] ? imgUrl(product.images[0]) : `https://placehold.co/400x200/22c55e/white?text=${encodeURIComponent(product.name)}`;
                 return (
                   <motion.div key={product._id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     className="card overflow-hidden hover:shadow-lg transition-shadow">
@@ -114,7 +115,7 @@ export function ProductForm() {
           harvestDate: p.harvestDate ? p.harvestDate.split('T')[0] : '',
           isOrganic: p.isOrganic, isAvailable: p.isAvailable
         });
-        if (p.images?.length) setPreviews(p.images.map(img => `http://localhost:5000${img}`));
+        if (p.images?.length) setPreviews(p.images.map(img => imgUrl(img)));
       });
     }
   }, [id, isEdit]);

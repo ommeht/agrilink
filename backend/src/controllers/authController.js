@@ -46,7 +46,7 @@ exports.getMe = async (req, res) => {
 exports.updateProfile = async (req, res, next) => {
   try {
     const { name, phone, address, farmName, farmDescription, farmLocation } = req.body;
-    const avatar = req.file ? `/uploads/${req.file.filename}` : undefined;
+    const avatar = req.file ? req.file.path : undefined;
     const updates = { name, phone, address, farmName, farmDescription, farmLocation };
     if (avatar) updates.avatar = avatar;
 
