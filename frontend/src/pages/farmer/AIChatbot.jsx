@@ -35,8 +35,9 @@ function ChatTab() {
     try {
       const { data } = await api.post('/ai/chat', { message: msg });
       setMessages(prev => [...prev, { role: 'ai', text: data.reply }]);
-    } catch {
-      setMessages(prev => [...prev, { role: 'ai', text: '❌ Sorry, I could not process your request. Please try again.' }]);
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || 'Could not process request';
+      setMessages(prev => [...prev, { role: 'ai', text: `❌ Error: ${msg}` }]);
     } finally { setLoading(false); }
   };
 

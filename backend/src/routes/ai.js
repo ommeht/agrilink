@@ -29,7 +29,10 @@ Provide response in this format:
 
     const result = await model.generateContent(prompt);
     res.json({ reply: result.response.text() });
-  } catch (err) { next(err); }
+  } catch (err) {
+    console.error('Chat error:', err.message);
+    next(err);
+  }
 });
 
 // Plant Disease Detection
