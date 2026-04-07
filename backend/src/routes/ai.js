@@ -28,48 +28,55 @@ Provide response in this format:
 - Important tips`;
 
     const result = await model.generateContent(prompt);
-    const text = result.response.text();
-    res.json({ reply: text });
+    res.json({ reply: result.response.text() });
   } catch (err) { next(err); }
 });
 
 // Plant Disease Detection
-router.post('/disease', protect, authorize('farmer'), upload.single('image'), async (req, res, next) => {
-  try {
-    if (!req.file) return res.status(400).json({ message: 'Image is required' });
+router.post('/disease', protect, authorize('farmer'), (req, res, next) => {
+  upload.single('image')(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: err.message || 'Image upload failed' });
+    try {
+      if (!req.file) return res.status(400).json({ message: 'Image is required' });
 
-    const model = getModel();
-    const imagePart = {
-      inlineData: {
-        data: req.file.buffer.toString('base64'),
-        mimeType: req.file.mimetype
-      }
-    };
+      const model = getModel();
 
-    const prompt = `You are an expert plant pathologist. Analyze this crop/plant image and provide a detailed disease diagnosis.
+      const imagePart = {
+        inlineData: {
+          data: req.file.buffer.toString('base64'),
+          mimeType: req.file.mimetype
+        }
+      };
 
-Respond in this exact JSON format:
+      const prompt = `You are an expert plant pathologist. Analyze this crop/plant image carefully.
+
+Respond ONLY with valid JSON in this exact format, no extra text:
 {
-  "disease": "Disease name or 'Healthy Plant'",
-  "confidence": "High/Medium/Low",
-  "description": "Brief description of the disease",
+  "disease": "Disease name or Healthy Plant",
+  "confidence": "High or Medium or Low",
+  "description": "Brief description",
   "symptoms": ["symptom 1", "symptom 2"],
-  "treatment": ["treatment step 1", "treatment step 2"],
+  "treatment": ["treatment 1", "treatment 2"],
   "pesticides": ["pesticide 1", "pesticide 2"],
-  "prevention": ["prevention tip 1", "prevention tip 2"],
-  "severity": "Mild/Moderate/Severe/None"
+  "prevention": ["tip 1", "tip 2"],
+  "severity": "None or Mild or Moderate or Severe"
 }`;
 
-    const result = await model.generateContent([prompt, imagePart]);
-    const text = result.response.text();
+      const result = await model.generateContent([prompt, imagePart]);
+      const text = result.response.text().trim();
 
-    // Extract JSON from response
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) return res.status(500).json({ message: 'Could not analyze image' });
+      // Extract JSON — handle markdown code blocks too
+      const jsonMatch = text.match(/```json\s*([\s\S]*?)```/) || text.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) return res.status(500).json({ message: 'Could not parse AI response' });
 
-    const analysis = JSON.parse(jsonMatch[0]);
-    res.json({ analysis });
-  } catch (err) { next(err); }
+      const jsonStr = jsonMatch[1] || jsonMatch[0];
+      const analysis = JSON.parse(jsonStr);
+      res.json({ analysis });
+    } catch (err) {
+      console.error('Disease detection error:', err.message);
+      res.status(500).json({ message: err.message || 'Failed to analyze image' });
+    }
+  });
 });
 
 module.exports = router;

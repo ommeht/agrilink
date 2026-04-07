@@ -127,8 +127,8 @@ function DiseaseTab() {
       formData.append('image', image);
       const { data } = await api.post('/ai/disease', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
       setResult(data.analysis);
-    } catch {
-      toast.error('Failed to analyze image. Please try again.');
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to analyze image. Please try again.');
     } finally { setLoading(false); }
   };
 
