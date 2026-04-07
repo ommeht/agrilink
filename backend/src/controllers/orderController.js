@@ -111,6 +111,11 @@ exports.updateOrderStatus = async (req, res, next) => {
     }
     order.status = status;
     if (status === 'delivered') { order.isDelivered = true; order.deliveredAt = Date.now(); }
+    if (status === 'cancelled') {
+      for (const item of order.items) {
+        await Product.findByIdAndUpdate(item.product, { $inc: { quantity: item.quantity } });
+      }
+    }
     await order.save();
 
     const User = require('../models/User');
