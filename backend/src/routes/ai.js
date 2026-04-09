@@ -18,7 +18,7 @@ const openrouter = axios.create({
 
 const chat = async (messages) => {
   const res = await openrouter.post('/chat/completions', {
-    model: 'meta-llama/llama-3.2-11b-vision-instruct:free',
+    model: 'google/gemma-3-4b-it:free',
     messages
   });
   return res.data.choices[0].message.content;
