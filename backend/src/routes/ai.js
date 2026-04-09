@@ -18,7 +18,7 @@ const openrouter = axios.create({
 
 const chat = async (messages) => {
   const res = await openrouter.post('/chat/completions', {
-    model: 'mistralai/mistral-7b-instruct:free',
+    model: 'deepseek/deepseek-r1:free',
     messages
   });
   return res.data.choices[0].message.content;
