@@ -18,7 +18,15 @@ const openrouter = axios.create({
 
 const chat = async (messages) => {
   const res = await openrouter.post('/chat/completions', {
-    model: 'deepseek/deepseek-r1:free',
+    model: 'meta-llama/llama-3.2-3b-instruct:free',
+    messages
+  });
+  return res.data.choices[0].message.content;
+};
+
+const vision = async (messages) => {
+  const res = await openrouter.post('/chat/completions', {
+    model: 'google/gemma-3-4b-it:free',
     messages
   });
   return res.data.choices[0].message.content;
@@ -55,7 +63,7 @@ router.post('/disease', protect, authorize('farmer'), (req, res, next) => {
       const base64 = req.file.buffer.toString('base64');
       const mimeType = req.file.mimetype;
 
-      const reply = await chat([
+      const reply = await vision([
         {
           role: 'user',
           content: [
