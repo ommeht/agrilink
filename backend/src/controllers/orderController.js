@@ -147,6 +147,54 @@ exports.getOrderById = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
+exports.getFarmerSalesReport = async (req, res, next) => {
+  try {
+    const orders = await Order.find({ farmer: req.user._id }).populate('items.product', 'name');
+
+    // Monthly sales for last 6 months
+    const monthlySales = {};
+    const now = new Date();
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const key = d.toLocaleString('default', { month: 'short', year: '2-digit' });
+      monthlySales[key] = { month: key, revenue: 0, orders: 0 };
+    }
+    orders.forEach(o => {
+      if (o.status === 'cancelled') return;
+      const d = new Date(o.createdAt);
+      const key = d.toLocaleString('default', { month: 'short', year: '2-digit' });
+      if (monthlySales[key]) {
+        monthlySales[key].revenue += o.totalAmount;
+        monthlySales[key].orders += 1;
+      }
+    });
+
+    // Top products by revenue
+    const productMap = {};
+    orders.forEach(o => {
+      if (o.status === 'cancelled') return;
+      o.items.forEach(item => {
+        const name = item.name;
+        if (!productMap[name]) productMap[name] = { name, revenue: 0, qty: 0 };
+        productMap[name].revenue += item.price * item.quantity;
+        productMap[name].qty += item.quantity;
+      });
+    });
+    const topProducts = Object.values(productMap).sort((a, b) => b.revenue - a.revenue).slice(0, 5);
+
+    // Order status breakdown
+    const statusCount = { pending: 0, confirmed: 0, shipped: 0, delivered: 0, cancelled: 0 };
+    orders.forEach(o => { if (statusCount[o.status] !== undefined) statusCount[o.status]++; });
+    const statusData = Object.entries(statusCount).map(([name, value]) => ({ name, value }));
+
+    res.json({
+      monthlySales: Object.values(monthlySales),
+      topProducts,
+      statusData
+    });
+  } catch (err) { next(err); }
+};
+
 exports.getFarmerStats = async (req, res, next) => {
   try {
     const Product = require('../models/Product');
