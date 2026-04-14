@@ -6,29 +6,19 @@ const multer = require('multer');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 } });
 
-const openrouter = axios.create({
-  baseURL: 'https://openrouter.ai/api/v1',
-  headers: {
-    'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-    'Content-Type': 'application/json',
-    'HTTP-Referer': 'https://agrilink-fs3v.vercel.app',
-    'X-Title': 'AgriLink'
-  }
-});
-
-const chat = async (messages) => {
-  const res = await openrouter.post('/chat/completions', {
-    model: 'meta-llama/llama-3.2-3b-instruct:free',
-    messages
-  });
-  return res.data.choices[0].message.content;
-};
-
-const vision = async (messages) => {
-  const res = await openrouter.post('/chat/completions', {
-    model: 'google/gemma-3-4b-it:free',
-    messages
-  });
+const callAI = async (messages, model = 'meta-llama/llama-3.2-3b-instruct:free') => {
+  const res = await axios.post(
+    'https://openrouter.ai/api/v1/chat/completions',
+    { model, messages },
+    {
+      headers: {
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://agrilink-fs3v.vercel.app',
+        'X-Title': 'AgriLink'
+      }
+    }
+  );
   return res.data.choices[0].message.content;
 };
 
@@ -38,7 +28,7 @@ router.post('/chat', protect, authorize('farmer'), async (req, res, next) => {
     const { message } = req.body;
     if (!message) return res.status(400).json({ message: 'Message is required' });
 
-    const reply = await chat([
+    const reply = await callAI([
       {
         role: 'system',
         content: 'You are an expert agricultural advisor for Indian farmers. Give practical, concise advice about crops, fertilizers, seasons, soil, and pest control. Use bullet points for recommendations.'
@@ -49,7 +39,7 @@ router.post('/chat', protect, authorize('farmer'), async (req, res, next) => {
     res.json({ reply });
   } catch (err) {
     console.error('Chat error:', err.response?.data || err.message);
-    next(err);
+    res.status(500).json({ message: err.response?.data?.error?.message || err.message });
   }
 });
 
@@ -63,7 +53,7 @@ router.post('/disease', protect, authorize('farmer'), (req, res, next) => {
       const base64 = req.file.buffer.toString('base64');
       const mimeType = req.file.mimetype;
 
-      const reply = await vision([
+      const reply = await callAI([
         {
           role: 'user',
           content: [
@@ -87,7 +77,7 @@ router.post('/disease', protect, authorize('farmer'), (req, res, next) => {
             }
           ]
         }
-      ]);
+      ], 'google/gemma-3-4b-it:free');
 
       const jsonMatch = reply.match(/```json\s*([\s\S]*?)```/) || reply.match(/\{[\s\S]*\}/);
       if (!jsonMatch) return res.status(500).json({ message: 'Could not parse AI response' });
