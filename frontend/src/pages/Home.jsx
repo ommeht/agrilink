@@ -158,22 +158,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🌾</span>
-              <span className="text-white font-bold text-xl">AgriLink</span>
-            </div>
-            <p className="text-sm">© 2024 AgriLink. Connecting farmers with customers.</p>
-            <div className="flex gap-6 text-sm">
-              <Link to="/products" className="hover:text-white transition-colors">Products</Link>
-              <Link to="/farmers" className="hover:text-white transition-colors">Farmers</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { CartProvider } from './context/CartContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Pages
 import Home from './pages/Home';
@@ -78,6 +79,7 @@ function AppRoutes() {
           } />
         </Routes>
       </AnimatePresence>
+      <Footer />
     </>
   );
 }
