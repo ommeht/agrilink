@@ -6,7 +6,7 @@ const multer = require('multer');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 } });
 
-const callAI = async (messages, model = 'meta-llama/llama-3.2-3b-instruct:free') => {
+const callAI = async (messages, model = 'openrouter/auto') => {
   const res = await axios.post(
     'https://openrouter.ai/api/v1/chat/completions',
     { model, messages },
@@ -77,7 +77,7 @@ router.post('/disease', protect, authorize('farmer'), (req, res, next) => {
             }
           ]
         }
-      ], 'google/gemma-3-4b-it:free');
+      ], 'openrouter/auto');
 
       const jsonMatch = reply.match(/```json\s*([\s\S]*?)```/) || reply.match(/\{[\s\S]*\}/);
       if (!jsonMatch) return res.status(500).json({ message: 'Could not parse AI response' });
