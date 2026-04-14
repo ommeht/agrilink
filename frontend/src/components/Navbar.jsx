@@ -37,7 +37,7 @@ export default function Navbar() {
   const handleLogout = () => { logout(); navigate('/'); };
 
   const navLinks = user?.role === 'farmer'
-    ? [{ to: '/farmer/dashboard', label: 'Dashboard' }, { to: '/farmer/products', label: 'Products' }, { to: '/farmer/orders', label: 'Orders' }, { to: '/farmer/ai', label: '🤖 AI Assistant' }]
+    ? [{ to: '/farmer/dashboard', label: 'Dashboard' }, { to: '/farmer/products', label: 'Products' }, { to: '/farmer/orders', label: 'Orders' }, { to: '/farmer/ai', label: 'AI Assistant' }]
     : user?.role === 'admin'
     ? [{ to: '/admin', label: 'Admin Panel' }]
     : [{ to: '/products', label: 'Products' }, { to: '/farmers', label: 'Farmers' }, { to: '/orders', label: 'My Orders' }];

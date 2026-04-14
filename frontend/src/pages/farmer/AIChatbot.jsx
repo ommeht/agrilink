@@ -36,14 +36,13 @@ function ChatTab() {
       const { data } = await api.post('/ai/chat', { message: msg });
       setMessages(prev => [...prev, { role: 'ai', text: data.reply }]);
     } catch (err) {
-      const msg = err.response?.data?.message || err.message || 'Could not process request';
-      setMessages(prev => [...prev, { role: 'ai', text: `❌ Error: ${msg}` }]);
+      const errMsg = err.response?.data?.message || err.message || 'Could not process request';
+      setMessages(prev => [...prev, { role: 'ai', text: `❌ Error: ${errMsg}` }]);
     } finally { setLoading(false); }
   };
 
   return (
     <div className="flex flex-col h-[600px]">
-      {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((msg, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
@@ -74,7 +73,6 @@ function ChatTab() {
         <div ref={bottomRef} />
       </div>
 
-      {/* Suggestions */}
       {messages.length === 1 && (
         <div className="px-4 pb-2">
           <p className="text-xs text-gray-400 mb-2">Suggested questions:</p>
@@ -89,15 +87,13 @@ function ChatTab() {
         </div>
       )}
 
-      {/* Input */}
       <div className="p-4 border-t border-gray-100 dark:border-gray-800">
         <div className="flex gap-2">
           <input value={input} onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
             className="input flex-1" placeholder="Ask about crops, fertilizers, seasons..." disabled={loading} />
           <motion.button whileTap={{ scale: 0.9 }} onClick={() => sendMessage()}
-            disabled={loading || !input.trim()}
-            className="btn-primary px-4 disabled:opacity-50">
+            disabled={loading || !input.trim()} className="btn-primary px-4 disabled:opacity-50">
             <FiSend size={18} />
           </motion.button>
         </div>
@@ -137,7 +133,6 @@ function DiseaseTab() {
 
   return (
     <div className="p-4 space-y-4">
-      {/* Upload */}
       <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl cursor-pointer hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/10 transition-colors overflow-hidden">
         {preview ? (
           <div className="relative w-full h-full">
@@ -159,19 +154,15 @@ function DiseaseTab() {
       {preview && !result && (
         <motion.button whileTap={{ scale: 0.97 }} onClick={analyze} disabled={loading}
           className="btn-primary w-full py-3 flex items-center justify-center gap-2">
-          {loading ? (
-            <><span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> Analyzing...</>
-          ) : (
-            <><FiCpu size={18} /> Detect Disease</>
-          )}
+          {loading
+            ? <><span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> Analyzing...</>
+            : <><FiCpu size={18} /> Detect Disease</>}
         </motion.button>
       )}
 
-      {/* Result */}
       <AnimatePresence>
         {result && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-            {/* Header */}
             <div className={`p-4 rounded-2xl border-2 ${result.disease === 'Healthy Plant' ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'}`}>
               <div className="flex items-center gap-3">
                 {result.disease === 'Healthy Plant'
@@ -188,18 +179,10 @@ function DiseaseTab() {
               {result.description && <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{result.description}</p>}
             </div>
 
-            {result.symptoms?.length > 0 && (
-              <Section title="🔍 Symptoms" items={result.symptoms} color="yellow" />
-            )}
-            {result.treatment?.length > 0 && (
-              <Section title="💊 Treatment" items={result.treatment} color="blue" />
-            )}
-            {result.pesticides?.length > 0 && (
-              <Section title="🧪 Recommended Pesticides" items={result.pesticides} color="purple" />
-            )}
-            {result.prevention?.length > 0 && (
-              <Section title="🛡️ Prevention" items={result.prevention} color="green" />
-            )}
+            {result.symptoms?.length > 0 && <Section title="🔍 Symptoms" items={result.symptoms} color="yellow" />}
+            {result.treatment?.length > 0 && <Section title="💊 Treatment" items={result.treatment} color="blue" />}
+            {result.pesticides?.length > 0 && <Section title="🧪 Recommended Pesticides" items={result.pesticides} color="purple" />}
+            {result.prevention?.length > 0 && <Section title="🛡️ Prevention" items={result.prevention} color="green" />}
 
             <button onClick={() => { setResult(null); setImage(null); setPreview(null); }}
               className="w-full py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-sm text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
@@ -239,18 +222,14 @@ export default function AIChatbot() {
   return (
     <div className="min-h-screen pt-20 pb-12 bg-gray-50 dark:bg-gray-950">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white">
-              <GiPlantSeed size={22} />
-            </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">AI Farm Assistant</h1>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white">
+            <GiPlantSeed size={22} />
           </div>
-          <p className="text-gray-500 text-sm ml-13">Powered by Google Gemini</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">AI Farm Assistant</h1>
         </div>
 
         <div className="card overflow-hidden">
-          {/* Tabs */}
           <div className="flex border-b border-gray-100 dark:border-gray-800">
             {[
               { id: 'chat', label: '🌾 Crop Advisory' },
@@ -262,7 +241,6 @@ export default function AIChatbot() {
               </button>
             ))}
           </div>
-
           {tab === 'chat' ? <ChatTab /> : <DiseaseTab />}
         </div>
       </div>

@@ -23,7 +23,7 @@ const callAI = async (messages, model = 'openrouter/auto') => {
 };
 
 // Crop Advisory Chat
-router.post('/chat', protect, authorize('farmer'), async (req, res, next) => {
+router.post('/chat', protect, async (req, res, next) => {
   try {
     const { message } = req.body;
     if (!message) return res.status(400).json({ message: 'Message is required' });
@@ -44,7 +44,7 @@ router.post('/chat', protect, authorize('farmer'), async (req, res, next) => {
 });
 
 // Plant Disease Detection
-router.post('/disease', protect, authorize('farmer'), (req, res, next) => {
+router.post('/disease', protect, (req, res, next) => {
   upload.single('image')(req, res, async (err) => {
     if (err) return res.status(400).json({ message: err.message || 'Image upload failed' });
     try {
